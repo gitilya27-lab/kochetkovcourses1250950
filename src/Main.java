@@ -18,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        // Создание клиента
+        System.out.println("Дата запуска программы: " + LocalDate.now());
         Customer customer = new Customer(
                 "Ivan",
                 "123456789",
@@ -34,7 +34,6 @@ public class Main {
         System.out.println(customer.getAddress());
 
 
-        // Создание категории
         Category category = new Category(1, "Programming");
 
         System.out.println("\n--- CATEGORY ---");
@@ -45,7 +44,6 @@ public class Main {
         System.out.println(category.getName());
 
 
-        // Создание преподавателя
         Teacher teacher = new Teacher(
                 "John",
                 "555123",
@@ -61,7 +59,6 @@ public class Main {
         System.out.println(teacher.getAddress());
 
 
-        // Создание урока
         Lesson lesson = new Lesson(
                 3,
                 201,
@@ -82,7 +79,6 @@ public class Main {
                 lesson.isAvailable());
 
 
-        // Связь категории и урока
         category.addLesson(lesson);
 
         System.out.println(category.getLessons());
@@ -91,7 +87,6 @@ public class Main {
         System.out.println(lesson.getCategory());
 
 
-        // Связь преподавателя и урока
         teacher.teachLesson(lesson);
 
         System.out.println(teacher.getLessons());
@@ -101,7 +96,6 @@ public class Main {
         System.out.println(lesson.getTeacher());
 
 
-        // Создание курса
         Course course = new Course(
                 2,
                 101,
@@ -128,7 +122,6 @@ public class Main {
                 course.calculateTotalPrice());
 
 
-        // Связь курса и урока
         course.addLesson(lesson);
 
         System.out.println(course.getLessons());
@@ -146,7 +139,6 @@ public class Main {
         System.out.println(course.getCustomer());
 
 
-        // Создание заказа
         Order order = customer.takeCourse();
 
         System.out.println("\n--- ORDER ---");
@@ -160,11 +152,9 @@ public class Main {
         System.out.println(order.getCreatedAt());
         System.out.println(order.getStatus());
 
-        // Расчёт стоимости заказа
         System.out.println("Стоимость заказа: " +
                 order.getTotal());
 
-        // Добавление курса в заказ
         order.addCourse(course);
 
         System.out.println(order.getCourses());
@@ -172,17 +162,14 @@ public class Main {
         order.setCustomer(customer);
         System.out.println(order.getCustomer());
 
-        // Отмена заказа
         order.cancel();
 
         System.out.println("Статус после отмены: " +
                 order.getStatus());
 
-        // Изменение статуса
         order.setStatus(OrderStatus.NEW);
 
 
-        // Создание оплаты
         Payment payment = new Payment(
                 401,
                 order.getTotal(),
@@ -202,13 +189,11 @@ public class Main {
         System.out.println(payment.getMethod());
         System.out.println(payment.getPaidAt());
 
-        // Связь оплаты и заказа
         order.setPayment(payment);
 
         payment.setOrder(order);
         System.out.println(payment.getOrder());
 
-        // Обработка оплаты
         System.out.println("Результат оплаты: " +
                 payment.process());
 
@@ -219,7 +204,6 @@ public class Main {
                 payment.getPaidAt());
 
 
-        // Итоговая информация
         System.out.println("\n--- ALL OBJECTS ---");
 
         System.out.println(customer.toString());
