@@ -60,6 +60,11 @@ public class Course {
     }
 
     public void setDiscount(double discount) {
+        if (!Double.isFinite(discount) || discount < 0 || discount > 100) {
+            throw new IllegalArgumentException(
+                    "Скидка должна быть от 0 до 100 процентов"
+            );
+        }
         this.discount = discount;
     }
 
